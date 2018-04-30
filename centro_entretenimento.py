@@ -6,7 +6,7 @@ import media;
 toy_story = media.Filme("Toy Story",
                         "História de um menino e seus brinquedos que ganham vida.",
                         "https://i.pinimg.com/originals/9d/cf/51/9dcf514305b66681c188fff05ae4ca54.jpg",
-                        "https://www.youtube.com/watch?v=4KPTXpQehio")
+                        "https://www.youtube.com/watch?v=KYz2wyBy3kc")
 
 #Instância da classe Filme
 avatar = media.Filme("Avatar",
@@ -27,20 +27,21 @@ ratatouille = media.Filme("Ratatouille",
                           "https://www.youtube.com/watch?v=c3sBBRxDAqk")
 
 #Instância da classe Filme
-midnight_in_paris = media.Filme("Midnight in Paris",
-                          "Storyline",
-                          "http://upload.wikimedia.org/wikipedia/en/9/9f/Midnight_in_Paris_Poster.jpg",
-                          "https://www.youtube.com/watch?v=FAfR8omt-CY")
+vingadores = media.Filme("Os Vingadores",
+                         "Nick Fury, diretor da agencia de espionagem S.H.I.E.L.D., chega a um centro de pesquisa remoto durante uma evacuacao. O Tesseract, uma fonte de energia de potencial desconhecido, ja ativado, abriu um portal atraves do espaco, do qual o deus nordico exilado Loki ressurge. Loki leva o Tesseract (Cubo Cosmico) e usa suas habilidades para controlar as mentes de varias pessoas da S.H.I.E.L.D., a fim de que eles o ajudem em sua fuga.",
+                         "https://cdn.movieweb.com/img.teasers.posters/FIruhzrtaK9Buw_364_a/Marvels-The-Avengers.jpg",
+                         "https://www.youtube.com/watch?v=eOrNdBpGMv8")
 
 #Instância da classe Filme
 hunger_games = media.Filme("Jogos Vorazes",
-                          "Storyline",
-                          "http://upload.wikimedia.org/wikipedia/en/4/42/HungerGamesPoster.jpg",
-                          "https://www.youtube.com/watch?v=PbA63a7H0bo")
+                           "A historia e estabelecida em um periodo distopico pos-apocaliptico na nacao de Panem, onde garotos e garotas de 12 a 18 anos devem participar dos Jogos Vorazes, um evento anual televisionado na qual os tributos precisam lutar ate a morte ate que sobre apenas um, que e coroado vencedor.",
+                           "http://upload.wikimedia.org/wikipedia/en/4/42/HungerGamesPoster.jpg",
+                           "https://www.youtube.com/watch?v=PbA63a7H0bo")
 
 #Variável que recebe uma lista com os filmes que será exibidos no site
-movies = [toy_story, avatar, tropa_elite, ratatouille, midnight_in_paris, hunger_games]
+movies = [toy_story, avatar, tropa_elite, ratatouille, vingadores, hunger_games]
 
+#Geração da página com os filmes
 fresh_tomatoes.open_movies_page(movies)
 
 #print(media.Filme.VALID_RATINGS)

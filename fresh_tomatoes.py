@@ -16,14 +16,15 @@ main_page_head = '''
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <style type="text/css" media="screen">
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<style type="text/css" media="screen">
         body {
             padding-top: 80px;
         }
-        #trailer .modal-dialog {
-            margin-top: 200px;
-            width: 640px;
-            height: 480px;
+        #trailer #enredo .modal-dialog {
+            margin-top: 80px;
+            width: 800px;
+            height: 400px;
         }
         .hanging-close {
             position: absolute;
@@ -43,7 +44,11 @@ main_page_head = '''
             background-color: #EEE;
             cursor: pointer;
         }
-				
+		
+		.movie-tile:hover h3{
+			color: black;
+		}
+		
         .scale-media {
             padding-bottom: 56.25%;
             position: relative;
@@ -58,38 +63,13 @@ main_page_head = '''
             background-color: white;
         }
     </style>
-    <script type="text/javascript" charset="utf-8">
-        // Pause the video when the modal is closed
-        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
-            // Remove the src so the player itself gets removed, as this is the only
-            // reliable way to ensure the video stops playing in IE
-            $("#trailer-video-container").empty();
-        });
-        // Start playing the video whenever the trailer modal is opened
-        $(document).on('click', '.movie-tile', function (event) {
-            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
-            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
-            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
-              'id': 'trailer-video',
-              'type': 'text-html',
-              'src': sourceUrl,
-              'frameborder': 0
-            }));
-        });
-        // Animate in the movies when the page loads
-        $(document).ready(function () {
-          $('.movie-tile').hide().first().show("fast", function showNext() {
-            $(this).next("div").show("fast", showNext);
-          });
-        });
-    </script>
 </head>
 '''
 
 
 # The main page layout and title bar
 main_page_content = '''
-  <body>
+  <body id="top">
     <!-- Trailer Video Modal -->
     <div class="modal" id="trailer">
       <div class="modal-dialog">
@@ -102,20 +82,54 @@ main_page_content = '''
         </div>
       </div>
     </div>
-
-    <!-- Main Page Content -->
-    <div class="container">
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Daniel Brito - Trailers de Filmes</a>
+	
+	<!-- Enredo Modal -->
+    <div class="modalEnredo" id="enredo">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div>
+			{movie_enredo}
           </div>
         </div>
       </div>
     </div>
-    <div class="container">
+
+    <!-- Main Page Content -->
+	<section id="banner" data-video="images/banner">
+		<div class="inner">
+			<header>
+				<h1>Daniel Brito - Trailers</h1>
+				<p>Aqui voce tera acesso a trailers de varios filmes<br />
+				Todos os videos estao em alta resolucao e com som de altissima qualidade.</p>
+			</header>
+			<a href="#main" class="more">Learn More</a>
+		</div>
+	</section>	
+	<div class="main">
+		<div class="inner">
+			<div class="thumbnails">
+				{movie_tiles}
+			</div>
+		</div>
+	</div>
+	<footer id="footer">
+		<div class="inner">
+			<h2>Daniel Brito</h2>
+			<p>Formado em Analise de Sistemas ha 4 anos, mas com experiencia em desenvolvimento de sites e softwares ha pelo menos 8 anos. Escolhi a area de TI, porque sempre gostei de informatica, sempre fui curioso para saber como os sites e os sistemas eram criados, sempre quis aprender o que esta por traz das paginas web. Hoje faco o curso de Desenvolvimento Web Full Stack para aprimorar os meus conhecimentos.</p>
+
+			<p class="copyright">&copy; Untitled. Desenvolvido por <a href="http://danielbrito.net.br">Daniel Brito</a>.</p>
+		</div>
+	</footer>
+	
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.poptrox.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+    <!--<div class="container">
       {movie_tiles}
-    </div>
+    </div>-->
   </body>
 </html>
 '''
@@ -123,9 +137,12 @@ main_page_content = '''
 
 # A single movie entry html template
 movie_tile_content = '''
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
-    <img src="{poster_image_url}" width="220" height="342">
-    <h2>{movie_title}</h2>
+<div class="box movie-tile" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
+	<img src="{poster_image_url}" alt="" style="width: 300px; height: 400px;" />
+	<div class="inner">
+		<h3>{movie_title}</h3>
+		<a href="{movie_enredo}" class="button fit" data-toggle="modalEnredo" data-target="#enredo">Enredo</a>
+	</div>
 </div>
 '''
 
@@ -146,8 +163,10 @@ def create_movie_tiles_content(movies):
         content += movie_tile_content.format(
             movie_title=movie.title,
             poster_image_url=movie.poster_image_url,
-            trailer_youtube_id=trailer_youtube_id
+            trailer_youtube_id=trailer_youtube_id,
+			movie_enredo=movie.enredo
         )
+		
     return content
 
 
