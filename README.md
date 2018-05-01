@@ -5,7 +5,7 @@
 <br />
 
 <h3><strong>Como Executar</strong></h3>
-<p>Para executar o site é necessário ter o Python instalado na versão 2.7 ou superior. Abra o Python Idle, depois abra o arquivo centro_entretenimento.py e aperte F5 para executar o projeto.</p>
+<p>Para executar o site é necessário ter o Python instalado na versão 3 ou superior. Abra o Python Idle, depois abra o arquivo centro_entretenimento.py e aperte F5 para executar o projeto.</p>
 <br />
 
 <h3><strong>Como Baixar o Código-Fonte do Projeto?</strong></h3>
