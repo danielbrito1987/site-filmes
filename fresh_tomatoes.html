@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Filmes - Daniel Brito</title>
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer #enredo .modal-dialog {
+            margin-top: 80px;
+            width: 800px;
+            height: 400px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+		
+		.movie-tile:hover h3{
+			color: black;
+		}
+		
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+    </style>
+	<script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+  <body id="top">
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+	
+    <!-- Main Page Content -->
+	<section id="banner" data-video="images/banner">
+		<div class="inner">
+			<header>
+				<h1>Daniel Brito - Trailers</h1>
+				<p>Aqui voce tera acesso a trailers de varios filmes<br />
+				Todos os videos estao em alta resolucao e com som de altissima qualidade.</p>
+			</header>
+			<a href="#main" class="more">Learn More</a>
+		</div>
+	</section>	
+	<div class="main">
+		<div class="inner">
+			<div class="thumbnails">
+				
+<div class="box movie-tile" data-trailer-youtube-id="KYz2wyBy3kc" data-toggle="modal" data-target="#trailer">
+	<img src="https://i.pinimg.com/originals/9d/cf/51/9dcf514305b66681c188fff05ae4ca54.jpg" alt="" style="width: 300px; height: 400px;" />
+	<div class="inner">	
+		<h3>Toy Story</h3>
+		<h3>Historia de um menino e seus brinquedos que ganham vida.</h3>
+	</div>
+</div>
+
+<div class="box movie-tile" data-trailer-youtube-id="WNW9Wz7k4pM" data-toggle="modal" data-target="#trailer">
+	<img src="http://www.mundoreal.xyz/wp-content/uploads/2014/08/Capa-do-Filme-Avatar.jpg" alt="" style="width: 300px; height: 400px;" />
+	<div class="inner">	
+		<h3>Avatar</h3>
+		<h3>Historia de um soldado em um planeta de alienigenas.</h3>
+	</div>
+</div>
+
+<div class="box movie-tile" data-trailer-youtube-id="A6W-nNPl1T8" data-toggle="modal" data-target="#trailer">
+	<img src="https://londripost.files.wordpress.com/2010/10/tropadeelite2_01.jpg" alt="" style="width: 300px; height: 400px;" />
+	<div class="inner">	
+		<h3>Tropa de Elite</h3>
+		<h3>Filme que mostra as acoes do BOPE para conter a violencia na cidade do Rio de Janeiro.</h3>
+	</div>
+</div>
+
+<div class="box movie-tile" data-trailer-youtube-id="c3sBBRxDAqk" data-toggle="modal" data-target="#trailer">
+	<img src="http://megapix.img.estaticos.tv.br/cache/cartazes/rat_cartaz_220x284.jpe" alt="" style="width: 300px; height: 400px;" />
+	<div class="inner">	
+		<h3>Ratatouille</h3>
+		<h3>Um rato que e chefe de cozinha</h3>
+	</div>
+</div>
+
+<div class="box movie-tile" data-trailer-youtube-id="eOrNdBpGMv8" data-toggle="modal" data-target="#trailer">
+	<img src="https://cdn.movieweb.com/img.teasers.posters/FIruhzrtaK9Buw_364_a/Marvels-The-Avengers.jpg" alt="" style="width: 300px; height: 400px;" />
+	<div class="inner">	
+		<h3>Os Vingadores</h3>
+		<h3>Nick Fury, diretor da agencia de espionagem S.H.I.E.L.D., chega a um centro de pesquisa remoto durante uma evacuacao. O Tesseract, uma fonte de energia de potencial desconhecido, ja ativado, abriu um portal atraves do espaco, do qual o deus nordico exilado Loki ressurge. Loki leva o Tesseract (Cubo Cosmico) e usa suas habilidades para controlar as mentes de varias pessoas da S.H.I.E.L.D., a fim de que eles o ajudem em sua fuga.</h3>
+	</div>
+</div>
+
+<div class="box movie-tile" data-trailer-youtube-id="PbA63a7H0bo" data-toggle="modal" data-target="#trailer">
+	<img src="http://upload.wikimedia.org/wikipedia/en/4/42/HungerGamesPoster.jpg" alt="" style="width: 300px; height: 400px;" />
+	<div class="inner">	
+		<h3>Jogos Vorazes</h3>
+		<h3>A historia e estabelecida em um periodo distopico pos-apocaliptico na nacao de Panem, onde garotos e garotas de 12 a 18 anos devem participar dos Jogos Vorazes, um evento anual televisionado na qual os tributos precisam lutar ate a morte ate que sobre apenas um, que e coroado vencedor.</h3>
+	</div>
+</div>
+
+			</div>
+		</div>
+	</div>
+	<footer id="footer">
+		<div class="inner">
+			<h2>Daniel Brito</h2>
+			<p>Formado em Analise de Sistemas ha 4 anos, mas com experiencia em desenvolvimento de sites e softwares ha pelo menos 8 anos. Escolhi a area de TI, porque sempre gostei de informatica, sempre fui curioso para saber como os sites e os sistemas eram criados, sempre quis aprender o que esta por traz das paginas web. Hoje faco o curso de Desenvolvimento Web Full Stack para aprimorar os meus conhecimentos.</p>
+			<p class="copyright">&copy; Untitled. Desenvolvido por <a target="_blank" href="http://danielbrito.net.br">Daniel Brito</a>.</p>
+		</div>
+	</footer>
+	
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.poptrox.min.js"></script>
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+    
+  </body>
+</html>

@@ -4,25 +4,25 @@ import media;
 
 #Instância da classe Filme
 toy_story = media.Filme("Toy Story",
-                        "História de um menino e seus brinquedos que ganham vida.",
+                        "Historia de um menino e seus brinquedos que ganham vida.",
                         "https://i.pinimg.com/originals/9d/cf/51/9dcf514305b66681c188fff05ae4ca54.jpg",
                         "https://www.youtube.com/watch?v=KYz2wyBy3kc")
 
 #Instância da classe Filme
 avatar = media.Filme("Avatar",
-                     "História de um soldado em um planeta de alienígenas.",
+                     "Historia de um soldado em um planeta de alienigenas.",
                      "http://www.mundoreal.xyz/wp-content/uploads/2014/08/Capa-do-Filme-Avatar.jpg",
                      "https://www.youtube.com/watch?v=WNW9Wz7k4pM")
 
 #Instância da classe Filme
 tropa_elite = media.Filme("Tropa de Elite",
-                          "Filme que mostra as ações do BOPE para conter a violência na cidade do Rio de Janeiro.",
+                          "Filme que mostra as acoes do BOPE para conter a violencia na cidade do Rio de Janeiro.",
                           "https://londripost.files.wordpress.com/2010/10/tropadeelite2_01.jpg",
                           "https://www.youtube.com/watch?v=A6W-nNPl1T8")
 
 #Instância da classe Filme
 ratatouille = media.Filme("Ratatouille",
-                          "Um rato que é chefe de cozinha",
+                          "Um rato que e chefe de cozinha",
                           "http://megapix.img.estaticos.tv.br/cache/cartazes/rat_cartaz_220x284.jpe",
                           "https://www.youtube.com/watch?v=c3sBBRxDAqk")
 

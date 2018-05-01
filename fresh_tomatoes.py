@@ -10,7 +10,6 @@ main_page_head = '''
 <head>
     <meta charset="utf-8">
     <title>Filmes - Daniel Brito</title>
-
     <!-- Bootstrap 3 -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
@@ -63,6 +62,31 @@ main_page_head = '''
             background-color: white;
         }
     </style>
+	<script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
 </head>
 '''
 
@@ -83,17 +107,6 @@ main_page_content = '''
       </div>
     </div>
 	
-	<!-- Enredo Modal -->
-    <div class="modalEnredo" id="enredo">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div>
-			{movie_enredo}
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Main Page Content -->
 	<section id="banner" data-video="images/banner">
 		<div class="inner">
@@ -116,8 +129,7 @@ main_page_content = '''
 		<div class="inner">
 			<h2>Daniel Brito</h2>
 			<p>Formado em Analise de Sistemas ha 4 anos, mas com experiencia em desenvolvimento de sites e softwares ha pelo menos 8 anos. Escolhi a area de TI, porque sempre gostei de informatica, sempre fui curioso para saber como os sites e os sistemas eram criados, sempre quis aprender o que esta por traz das paginas web. Hoje faco o curso de Desenvolvimento Web Full Stack para aprimorar os meus conhecimentos.</p>
-
-			<p class="copyright">&copy; Untitled. Desenvolvido por <a href="http://danielbrito.net.br">Daniel Brito</a>.</p>
+			<p class="copyright">&copy; Untitled. Desenvolvido por <a target="_blank" href="http://danielbrito.net.br">Daniel Brito</a>.</p>
 		</div>
 	</footer>
 	
@@ -127,9 +139,7 @@ main_page_content = '''
 	<script src="assets/js/skel.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
-    <!--<div class="container">
-      {movie_tiles}
-    </div>-->
+    
   </body>
 </html>
 '''
@@ -139,9 +149,9 @@ main_page_content = '''
 movie_tile_content = '''
 <div class="box movie-tile" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
 	<img src="{poster_image_url}" alt="" style="width: 300px; height: 400px;" />
-	<div class="inner">
+	<div class="inner">	
 		<h3>{movie_title}</h3>
-		<a href="{movie_enredo}" class="button fit" data-toggle="modalEnredo" data-target="#enredo">Enredo</a>
+		<h3>{movie_enredo}</h3>
 	</div>
 </div>
 '''
