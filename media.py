@@ -1,10 +1,11 @@
 import webbrowser
 
+
 class Filme():
     """ Esta classe armazena informacoes relacionadas a filmes"""
-    
+
     VALID_RATINGS = ["G", "PG", "PG-13", "R"]
-    
+
     def __init__(self, titulo_filme, enredo_filme, imagem, trailer):
         self.title = titulo_filme
         self.enredo = enredo_filme
